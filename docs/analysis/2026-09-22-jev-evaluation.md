@@ -21,8 +21,9 @@ Routing covered technical facts, routine engineering choices, business decisions
 | Input / output tokens | 25,856 / 3,596 |
 | Gateway market cost | $0.001086 for 48 successful calls |
 | Gateway reported cost | $0 for those calls |
+| Accepted at chosen-option probability ≥ 0.99 | 28/48 calls (58%), 26 correct; both mistakes still accepted |
 
-Latency includes network time but excludes pacing and rate-limit backoff. Three HTTP 429 responses were observed during the run. The stored results contain one of them; two were retried internally and were not saved as separate result rows. Requests resumed with pacing and backoff, so the latency figures do not describe total elapsed time or sustained throughput. Cost and token totals exclude two separate connectivity probes. Gateway cost metadata is not a billing statement, and the reported $0 is not a promise of free usage.
+Latency includes network time but excludes pacing and rate-limit backoff. The gateway's own provider timing puts the median at 236 ms; the rest is network and gateway overhead. Three HTTP 429 responses were observed during the run. The stored results contain one of them; the other two were retried inside the runner and appear only in console output that was not kept, so that count cannot be checked from the artifacts. Requests resumed with pacing and backoff, so the latency figures do not describe total elapsed time or sustained throughput. Cost and token totals exclude two separate connectivity probes. Gateway cost metadata is not a billing statement, and the reported $0 is not a promise of free usage. The market cost equals the listed price: $0.042 per million input tokens, with output not charged.
 
 The one mismatch happened twice:
 
